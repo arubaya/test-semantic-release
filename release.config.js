@@ -1,0 +1,18 @@
+module.exports = {
+  branches: ["main"],
+  plugins: [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    "./plugins/update-version", // ini plugin lokal kita
+    "@semantic-release/github",
+    [
+      "@semantic-release/git",
+      {
+        assets: ["package.json", "CHANGELOG.md"],
+        message:
+          "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
+      },
+    ],
+  ],
+};
